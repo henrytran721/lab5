@@ -1,13 +1,20 @@
 var data = require("../data.json");
 
 exports.addFriend = function(req, res) { 
-  var newFriend = {
-    "name": req.query.name,
-    "description": req.query.description,
-    "imageURL": 'http://lorempixel.com/400/400/people'
-  };
+  // Your code goes here
+  var name = req.query.name;
+  var description = req.query.description;
+  var jsonObj = {
+  	"name":name,
+  	"description": description,
+  	"imageURL": "http://lorempixel.com/400/400/people"
+  }
+  data.friends.push(jsonObj);
+  //console.log(jsonObj);
 
-  data['friends'].push(newFriend);
 
-  res.render('add', data);
-};
+  res.render('index', {
+  	"friends":data['friends']
+  })
+
+}
